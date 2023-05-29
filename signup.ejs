@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include ("./partials/nav.ejs") %>
+    <form action="/signup" class="signin" method="post">
+        <h2><i>Sign up</i></h2><br>
+        <label for="name">USERNAME</label><br>
+        <input type="text" name="name" id="name"><br>
+        <label for="email">E-MAIL</label><br>
+        <input type="text" name="email" id="email"><br>
+        <label for="password">PASSWORD</label><br>
+        <input type="password" name="password" id="password"><br>
+        <button type="submit">SUBMIT</button><br>
+        <span>Already Registered?</span><a href="/login">Log in</a><br>
+
+    </form>
+    <script>
+        let form=document.querySelector("form")
+        form.addEventListener("submit", async(e)=>{
+            e.preventDefault()
+            let email=form.email.value
+            let password=form.password.value
+            console.log(email,password)
+            let body={email,password}
+            try{
+               let res= await fetch("/signup",{
+                    method:"POST",
+                    headers:{"content-type":"application/json"},
+                    body:JSON.stringify(body)
+                })
+                let data=await res.json()
+                console.log(data)
+       }catch(err){
+                console.log(err,"error in posting")
+            }
+            
+        })
+    </script>
+</body>
+</html>
