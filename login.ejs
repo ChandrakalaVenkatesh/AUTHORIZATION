@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+    <link rel="stylesheet" href="/style.css">
+<body>
+    <h3>LOG IN</h3>
+    <%- include ("./partials/nav.ejs") %>
+    <form action="/login" method="post">
+    <label for="email">Email</label><br>
+    <input type="text" name="name" id="name"><br>
+    <label for="password">PASSWORD</label><br>
+    <input type="password" name="password" id="password"><br>
+    <button type="submit">Submit</button><br>
+    <span>Don't have an account?</span><br><a href="/signup">Register</a>
+</form>
+
+    <script>
+        let form=document.querySelector("form")
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault()
+            let email=form.name.value
+            let password=form.password.value
+            console.log(email,password)
+        })
+    </script>
+</body>
+</html>
